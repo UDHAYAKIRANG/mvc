@@ -1,17 +1,10 @@
 <?php
-$page = $_GET['page'] ?? 'home';
+require_once "./controllers/studentcontroller.php";
 
-switch ($page) {
-    case 'home':
-        require_once 'controllers/HomeController.php';
-        $controller = new HomeController();
-        $controller->index();
-        break;
-
-    default:
-        echo "404 - Page Not Found";
-        break;
-}
-
+$controller = new StudentController();
+$controller->insert();
+$data = $controller->getAllData();
+print_r($_SERVER['QUERY_STRING']);
+include "./views/hello.php";
 
 ?>
